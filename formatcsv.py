@@ -36,8 +36,8 @@ def mutate_csv(file_path):
 
 def check_files_changed(file_path, new_files, previous_files):
     filesChanged = False
-    previousFileList = [Path(file_path + '\\' + previous_files[0]), Path(file_path + '\\' + previous_files[1]),
-                        Path(file_path + '\\' + previous_files[2])]
+    previousFileList = [Path(file_path + '/' + previous_files[0]), Path(file_path + '/' + previous_files[1]),
+                        Path(file_path + '/' + previous_files[2])]
 
     for file in previousFileList:
         if not file.is_file():
@@ -45,7 +45,7 @@ def check_files_changed(file_path, new_files, previous_files):
                 newFile.close()
 
     for index in range(0, 3):
-        if not filecmp.cmp(Path(file_path + '\\' + new_files[index]), previousFileList[index]):
+        if not filecmp.cmp(Path(file_path + '/' + new_files[index]), previousFileList[index]):
             print('File "%s" differs' % previousFileList[index])
             filesChanged = True
         else:
@@ -62,13 +62,13 @@ filesHaveChanged = check_files_changed(path, [confirmedFileName, deathsFileName,
                                        [confirmedFileName + old, deathsFileName + old, recoveredFileName + old])
 if filesHaveChanged:
     for it in range(0, 3):
-        with open(path + '\\formatted-' + originalFilesList[it], 'w+', newline='') as newCSVFile:
+        with open(path + '/formatted-' + originalFilesList[it], 'w+', newline='') as newCSVFile:
             print('Editing formatted-' + originalFilesList[it])
             writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Count'])
             newFiles = []
 
             writer.writeheader()
-            for filePath in [path + '\\' + confirmedFileName, path + '\\' + deathsFileName, path + '\\'
+            for filePath in [path + '/' + confirmedFileName, path + '/' + deathsFileName, path + '/'
                              + recoveredFileName]:
                 newFiles.append(mutate_csv(Path(filePath)))
             for fil in newFiles:
