@@ -28,7 +28,8 @@ def mutate_csv(file_path):
                 myDict = OrderedDict([(items[0][0], items[0][1])])
                 for dictIter in range(1, 4):
                     myDict[items[dictIter][0]] = items[dictIter][1]
-                myDict["Date"] = items[i][0]
+                myDict['Date'] = items[i][0]
+                myDict['Count'] = items[i][1]
                 newCsv.append(myDict)
         return newCsv
 
@@ -61,9 +62,9 @@ filesHaveChanged = check_files_changed(path, [confirmedFileName, deathsFileName,
                                        [confirmedFileName + old, deathsFileName + old, recoveredFileName + old])
 if filesHaveChanged:
     for it in range(0, 3):
-        with open(path + "\\formatted-" + originalFilesList[it], "w+", newline='') as newCSVFile:
-            print("Editing formatted-" + originalFilesList[it])
-            writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date'])
+        with open(path + '\\formatted-' + originalFilesList[it], 'w+', newline='') as newCSVFile:
+            print('Editing formatted-' + originalFilesList[it])
+            writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Count'])
             newFiles = []
 
             writer.writeheader()
