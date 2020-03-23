@@ -51,7 +51,7 @@ def check_files_changed(file_path, new_files, previous_files):
             print('File "%s" differs' % previousFileList[index])
             filesChanged = True
         else:
-            print('File "%s" is the same' % previousFileList[index])
+            print('File "%s" did not change' % previousFileList[index])
     return filesChanged
 
 
