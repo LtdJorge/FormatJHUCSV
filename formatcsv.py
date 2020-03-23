@@ -19,11 +19,12 @@ def mutate_csv(file_path):
     with open(file_path) as file:
         fileLines = file.read().splitlines()
         originalCSVDict = csv.DictReader(fileLines)
+        rows = [row for row in originalCSVDict]
         numberOfDates = len(originalCSVDict.fieldnames)
 
         newCsv = []
-        for i in range(4, numberOfDates + 1):
-            for row in originalCSVDict:
+        for i in range(4, numberOfDates):
+            for row in rows:
                 items = list(row.items())
                 myDict = OrderedDict([(items[0][0], items[0][1])])
                 for dictIter in range(1, 4):
@@ -53,10 +54,10 @@ def check_files_changed(file_path, new_files, previous_files):
     return filesChanged
 
 
-if len(sys.argv) > 1:
-    path = sys.argv[1]
-else:
-    path = '~/'
+# if len(sys.argv) > 1:
+path = "C:\\Users\\jorge\\Documents\\Data\\CoronaVirus\\csv"
+# else:
+#     path = '~/'
 filesHaveChanged = check_files_changed(path, [confirmedFileName, deathsFileName,
                                               recoveredFileName],
                                        [confirmedFileName + old, deathsFileName + old, recoveredFileName + old])
