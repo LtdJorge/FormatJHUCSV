@@ -66,7 +66,7 @@ if filesHaveChanged:
     for it in range(0, 3):
         with open(path + '/formatted-' + originalFilesList[it], 'w+', newline='') as newCSVFile:
             print('Editing formatted-' + originalFilesList[it])
-            writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Count'])
+            writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Cases'])
             newFiles = []
 
             writer.writeheader()
