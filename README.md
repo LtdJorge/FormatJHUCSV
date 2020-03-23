@@ -8,3 +8,4 @@ I made this so I could easily parse the files with Logstash for sending it to El
 ```
 $ python formatcsv.py <folder with the original .csv files>
 ```
+It will search for the original files (don't rename them) and create the new ones with the same name but "formatted-" prepended.
