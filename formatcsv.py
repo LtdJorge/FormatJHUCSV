@@ -31,7 +31,7 @@ def mutate_csv(file_path):
                 for dictIter in range(1, 4):
                     myDict[items[dictIter][0]] = items[dictIter][1]
                 myDict['Date'] = items[i][0]
-                myDict['Count'] = items[i][1]
+                myDict['Cases'] = items[i][1]
                 newCsv.append(myDict)
         return newCsv
 
