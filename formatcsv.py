@@ -12,7 +12,7 @@ confirmedFileName: str = 'time_series_19-covid-Confirmed.csv'
 deathsFileName: str = 'time_series_19-covid-Deaths.csv'
 recoveredFileName: str = 'time_series_19-covid-Recovered.csv'
 originalFilesList = [confirmedFileName, deathsFileName, recoveredFileName]
-old = '_old'
+prefix = 'formatted-'
 
 
 def mutate_csv(file_path):
@@ -60,10 +60,10 @@ else:
     path = '~/'
 filesHaveChanged = check_files_changed(path, [confirmedFileName, deathsFileName,
                                               recoveredFileName],
-                                       [confirmedFileName + old, deathsFileName + old, recoveredFileName + old])
+                                       [prefix + confirmedFileName, prefix + deathsFileName, prefix + recoveredFileName])
 if filesHaveChanged:
     for it in range(0, 3):
-        with open(path + '/formatted-' + originalFilesList[it], 'w+', newline='') as newCSVFile:
+        with open(path + '/' + prefix + originalFilesList[it], 'w+', newline='') as newCSVFile:
             print('Editing formatted-' + originalFilesList[it])
             writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Count'])
             newFiles = []
