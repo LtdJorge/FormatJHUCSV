@@ -54,10 +54,10 @@ def check_files_changed(file_path, new_files, previous_files):
     return filesChanged
 
 
-# if len(sys.argv) > 1:
-path = "C:\\Users\\jorge\\Documents\\Data\\CoronaVirus\\csv"
-# else:
-#     path = '~/'
+if len(sys.argv) > 1:
+    path = sys.argv[1]
+else:
+    path = '~/'
 filesHaveChanged = check_files_changed(path, [confirmedFileName, deathsFileName,
                                               recoveredFileName],
                                        [confirmedFileName + old, deathsFileName + old, recoveredFileName + old])
