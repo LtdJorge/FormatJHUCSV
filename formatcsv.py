@@ -9,10 +9,10 @@ headerLength = 0
 baseColumns = 4
 
 # CSV filenames
-confirmedFileName: str = 'time_series_19-covid-Confirmed.csv'
-deathsFileName: str = 'time_series_19-covid-Deaths.csv'
-recoveredFileName: str = 'time_series_19-covid-Recovered.csv'
-originalFilesList = [confirmedFileName, deathsFileName, recoveredFileName]
+confirmedFileName: str = 'time_series_covid19_confirmed_global.csv'
+deathsFileName: str = 'time_series_covid19_deaths_global.csv'
+# recoveredFileName: str = 'time_series_19-covid-Recovered.csv'
+originalFilesList = [confirmedFileName, deathsFileName]
 suffix = '_old'
 
 
@@ -59,19 +59,17 @@ if len(sys.argv) > 1:
     path = sys.argv[1]
 else:
     path = '~/'
-filesHaveChanged = check_files_changed(path, [confirmedFileName, deathsFileName,
-                                              recoveredFileName],
-                                       [confirmedFileName + suffix, deathsFileName + suffix, recoveredFileName + suffix])
+filesHaveChanged = check_files_changed(path, [confirmedFileName, deathsFileName],
+                                       [confirmedFileName + suffix, deathsFileName + suffix])
 if filesHaveChanged:
-    for it in range(0, 3):
+    for it in range(0, 2):
         with open(path + '/formatted-' + originalFilesList[it], 'w+', newline='') as newCSVFile:
             print('Editing formatted-' + originalFilesList[it])
             writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Cases'])
             newFiles = []
 
             writer.writeheader()
-            for filePath in [path + '/' + confirmedFileName, path + '/' + deathsFileName, path + '/'
-                             + recoveredFileName]:
+            for filePath in [path + '/' + confirmedFileName, path + '/' + deathsFileName]:
                 newFiles.append(mutate_csv(Path(filePath)))
                 copy2(filePath, filePath + suffix)
             for fil in newFiles:
