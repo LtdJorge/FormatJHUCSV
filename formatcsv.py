@@ -70,9 +70,7 @@ if filesHaveChanged:
             print('Editing formatted-' + originalFilesList[it])
             writer = csv.DictWriter(newCSVFile, ['Province/State', 'Country/Region', 'Lat', 'Long', 'Date', 'Cases'])
             newFiles = []
-
             writer.writeheader()
-            newFiles.append(mutate_csv(Path(path + '/formatted-' + originalFilesList[it])))
-            copy2(path + '/formatted-' + originalFilesList[it], path + '/formatted-' + originalFilesList[it] + suffix)
-            for fil in newFiles:
-                writer.writerows(fil)
+            newFiles.append(mutate_csv(path + '/' + originalFilesList[it]))
+            copy2(path + '/' + originalFilesList[it], path + '/' + originalFilesList[it] + suffix)
+            writer.writerows(newFiles[it])
