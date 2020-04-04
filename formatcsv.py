@@ -73,4 +73,4 @@ if filesHaveChanged:
             writer.writeheader()
             newFiles.append(mutate_csv(path + '/' + originalFilesList[it]))
             copy2(path + '/' + originalFilesList[it], path + '/' + originalFilesList[it] + suffix)
-            writer.writerows(newFiles[it])
+            writer.writerows(newFiles[it-1])
