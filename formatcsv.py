@@ -38,15 +38,14 @@ def mutate_csv(file_path):
 
 def check_files_changed(file_path, new_files, previous_files):
     filesChanged = False
-    previousFileList = [Path(file_path + '/' + previous_files[0]), Path(file_path + '/' + previous_files[1]),
-                        Path(file_path + '/' + previous_files[2])]
+    previousFileList = [Path(file_path + '/' + previous_files[0]), Path(file_path + '/' + previous_files[1])]
 
     for file in previousFileList:
         if not file.is_file():
             with open(file, 'w+') as newFile:
                 newFile.close()
 
-    for index in range(0, 3):
+    for index in range(0, 2):
         if not filecmp.cmp(Path(file_path + '/' + new_files[index]), previousFileList[index]):
             print('File "%s" differs' % previousFileList[index])
             filesChanged = True
