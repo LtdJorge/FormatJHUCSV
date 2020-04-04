@@ -51,7 +51,7 @@ def check_files_changed(file_path, new_files, previous_files):
             print('File "%s" differs' % previousFileList[index])
             filesChanged = True
         elif not os.path.isfile(file_path + '/' + 'formatted-' + new_files[index]):
-            print('File "%s" does not exist' % 'formatted-' + new_files[index])
+            print('File "%s" does not exist' % ('formatted-' + new_files[index]))
             filesChanged = True
         else:
             print('File "%s" did not change' % previousFileList[index])
