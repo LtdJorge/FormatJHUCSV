@@ -72,8 +72,7 @@ if filesHaveChanged:
             newFiles = []
 
             writer.writeheader()
-            for filePath in [path + '/' + confirmedFileName, path + '/' + deathsFileName]:
-                newFiles.append(mutate_csv(Path(filePath)))
-                copy2(filePath, filePath + suffix)
+            newFiles.append(mutate_csv(Path(path + '/formatted-' + originalFilesList[it])))
+            copy2(path + '/formatted-' + originalFilesList[it], path + '/formatted-' + originalFilesList[it] + suffix)
             for fil in newFiles:
                 writer.writerows(fil)
