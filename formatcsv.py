@@ -38,8 +38,7 @@ def mutate_csv(file_path):
 
 def check_files_changed(file_path, new_files, previous_files):
     filesChanged = False
-    previousFileList = [Path(file_path + '/' + previous_files[0]), Path(file_path + '/' + previous_files[1]),
-                        Path(file_path + '/' + previous_files[2])]
+    previousFileList = [Path(file_path + '/' + previous_files[0]), Path(file_path + '/' + previous_files[1])]
 
     for file in previousFileList:
         if not file.is_file():
