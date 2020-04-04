@@ -47,12 +47,13 @@ def check_files_changed(file_path, new_files, previous_files):
                 newFile.close()
 
     for index in range(0, 2):
+        if not os.path.isfile(file_path + '/' + 'formatted-' + new_files[index]):
+            print('File "%s" does not exist' % ('formatted-' + new_files[index]))
+            filesChanged = True
         if not filecmp.cmp(Path(file_path + '/' + new_files[index]), previousFileList[index]):
             print('File "%s" differs' % previousFileList[index])
             filesChanged = True
-        elif not os.path.isfile(file_path + '/' + 'formatted-' + new_files[index]):
-            print('File "%s" does not exist' % ('formatted-' + new_files[index]))
-            filesChanged = True
+
         else:
             print('File "%s" did not change' % previousFileList[index])
     return filesChanged
